@@ -14,12 +14,10 @@ const RootLayout = ({ children }) => {
   return (
     <main>
       <Navigation openSidebar={sidebarOpenHandler} />
-      <div className="flex">
-        {openSidebar && <Sidebar />}
-        <section onClick={sidebarCloseHandler} className="h-screen w-full p-5">
-          {children}
-        </section>
-      </div>
+      {openSidebar && <Sidebar />}
+      <section onClick={sidebarCloseHandler} className="w-full px-6 pt-24">
+        {children}
+      </section>
     </main>
   );
 };
