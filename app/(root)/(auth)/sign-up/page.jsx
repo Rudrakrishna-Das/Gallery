@@ -1,6 +1,7 @@
 "use client";
 import Loading from "@/components/Loading";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 
 const SignUp = () => {
@@ -11,6 +12,7 @@ const SignUp = () => {
   });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const router = useRouter();
   const formChangeHandler = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -37,9 +39,13 @@ const SignUp = () => {
         body: JSON.stringify(formData),
       });
       const data = await res.json();
-      console.log(data);
+      if (!data.isOk) {
+        throw new Error(data.message);
+      }
+      router.push("/sign-in");
     } catch (error) {
-      console.log(error);
+      setError(error.message);
+      setLoading(false);
     }
   };
   return (
@@ -71,7 +77,7 @@ const SignUp = () => {
           className="p-1 rounded-md text-black font-semibold"
         />
         <button className="bg-black py-2 rounded-lg hover:opacity-85">
-          {loading ? <Loading /> : "Sign In"}
+          {loading ? <Loading /> : "Sign Up"}
         </button>
       </form>
       {error && (
