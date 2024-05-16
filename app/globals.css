@@ -5,3 +5,22 @@
 body {
   background-color: black;
 }
+.load {
+  margin: 0 auto;
+  width: 2rem;
+  height: 2rem;
+  border: 2px solid black;
+  border-top-color: white;
+  border-bottom-color: white;
+  border-radius: 100%;
+  animation: 0.5s infinite ease-in-out circle;
+}
+
+@keyframes circle {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 360deg;
+  }
+}

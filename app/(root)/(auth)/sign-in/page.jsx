@@ -13,7 +13,10 @@ const SignIn = () => {
       </form>
       <h3>
         Don&apos;t have a account{" "}
-        <Link className="hover:underline" href="/sign-up">
+        <Link
+          className="text-black text-base md:text-xl font-extrabold hover:underline"
+          href="/sign-up"
+        >
           Sign Up
         </Link>
       </h3>
