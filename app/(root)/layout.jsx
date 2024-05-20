@@ -1,6 +1,7 @@
 "use client";
 import Navigation from "@/components/Navigation";
 import Sidebar from "@/components/Sidebar";
+import UserProvider from "@/store/store";
 import { useState } from "react";
 
 const RootLayout = ({ children }) => {

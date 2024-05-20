@@ -1,10 +1,14 @@
 "use client";
+import { UserContext } from "@/store/store";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useContext } from "react";
 
 const Navigation = ({ openSidebar }) => {
   const pathname = usePathname();
+  const { user } = useContext(UserContext);
+  console.log(user);
   return (
     <>
       <nav
