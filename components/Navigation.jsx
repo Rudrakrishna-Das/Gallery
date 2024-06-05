@@ -8,7 +8,6 @@ import { useContext } from "react";
 const Navigation = ({ openSidebar }) => {
   const pathname = usePathname();
   const { user } = useContext(UserContext);
-  console.log(user);
   return (
     <>
       <nav
@@ -41,9 +40,9 @@ const Navigation = ({ openSidebar }) => {
             className={`p-2 rounded-lg hover:bg-slate-800 ${
               pathname === "/sign-in" ? "bg-slate-800" : ""
             }`}
-            href="/sign-in"
+            href={`${user ? "/profile" : "/sign-in"}`}
           >
-            Sign In
+            {user ? user.username : "Sign In"}
           </Link>
         </ul>
         <Image

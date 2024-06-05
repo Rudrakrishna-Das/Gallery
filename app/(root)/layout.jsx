@@ -1,17 +1,27 @@
 "use client";
 import Navigation from "@/components/Navigation";
 import Sidebar from "@/components/Sidebar";
-import UserProvider from "@/store/store";
-import { useState } from "react";
+import { UserContext } from "@/store/store";
+import { useRouter } from "next/navigation";
+import { useContext, useEffect, useLayoutEffect, useState } from "react";
 
 const RootLayout = ({ children }) => {
   const [openSidebar, setOpenSidebar] = useState(false);
+  const router = useRouter();
+  const { addUser } = useContext(UserContext);
   const sidebarOpenHandler = () => {
     setOpenSidebar((prevState) => !prevState);
   };
   const sidebarCloseHandler = () => {
     setOpenSidebar(false);
   };
+  useLayoutEffect(() => {
+    const userLoggedIn = localStorage.getItem("user");
+    if (userLoggedIn) {
+      addUser(JSON.parse(userLoggedIn));
+      router.push("/profile");
+    }
+  }, []);
   return (
     <main>
       <Navigation openSidebar={sidebarOpenHandler} />

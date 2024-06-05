@@ -14,6 +14,7 @@ const SignUp = () => {
   const [error, setError] = useState(false);
   const router = useRouter();
   const formChangeHandler = (e) => {
+    setError(false);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const formSubmitHandler = async (e) => {

@@ -1,6 +1,8 @@
 "use client";
+import Loading from "@/components/Loading";
 import { UserContext } from "@/store/store";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useContext } from "react";
 
 const SignIn = () => {
@@ -11,8 +13,10 @@ const SignIn = () => {
     password: "",
   });
   const { addUser } = useContext(UserContext);
+  const router = useRouter();
 
   const formChangeHandler = (e) => {
+    setError(false);
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
   const formSubmitHandler = async (e) => {
@@ -40,6 +44,7 @@ const SignIn = () => {
       setError(data.message);
     }
     addUser(data.data);
+    router.push("/profile");
   };
   return (
     <section className="bg-white-1 w-full md:max-w-[50%] mx-auto flex flex-col gap-4 mt-28 p-5 text-white-2 rounded-lg">
@@ -65,7 +70,7 @@ const SignIn = () => {
           value={formData.password}
         />
         <button className="bg-black py-2 rounded-lg hover:opacity-85">
-          Sign In
+          {loading ? <Loading /> : "Sign In"}
         </button>
         {error && (
           <p className="text-red-500 font-extrabold text-xs sm:text-base md:text-xl">
@@ -74,7 +79,7 @@ const SignIn = () => {
         )}
       </form>
       <h3>
-        Don&apos;t have a account{" "}
+        Don&apos;t have an account{" "}
         <Link
           className="text-black text-base md:text-xl font-extrabold hover:underline"
           href="/sign-up"

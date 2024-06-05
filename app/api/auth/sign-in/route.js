@@ -1,5 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
+import { sign } from "jsonwebtoken";
+import { cookies } from "next/headers";
 
 const bcrypt = require("bcryptjs");
 
@@ -33,6 +35,9 @@ export async function POST(req, res) {
     );
   }
   delete rows[0].password;
+  const token = sign({ id: rows[0].userid }, process.env.SECRET_KEY);
+
+  cookies().set("token", token);
   return NextResponse.json(
     {
       data: rows[0],

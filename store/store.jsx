@@ -10,6 +10,7 @@ export const UserContext = createContext({
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const handleAddUser = (user) => {
+    localStorage.setItem("user", JSON.stringify(user));
     setUser(user);
   };
   const handleRemoveUser = () => {
