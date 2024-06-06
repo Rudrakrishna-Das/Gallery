@@ -1,6 +1,7 @@
 import { sql } from "@vercel/postgres";
 import { cookies } from "next/headers";
 import { NextResponse } from "next/server";
+const bcrypt = require("bcryptjs");
 const { validateUser } = require("../../../../helper/helper");
 export const POST = async (req, res) => {
   const token = cookies().get("token");
@@ -41,8 +42,16 @@ export const POST = async (req, res) => {
 
   const { rows, rowCount } =
     await sql`select * from users where userid = ${user.id}`;
-  const hashedPassword = ''
-  if(data)
- const newUser = await sql`update users set username = ${data.userName ? data.userName : rows[0].username} email = ${data.userName ? data.userName : rows[0].username}`
 
+  let hashedPassword = "";
+  if (data.hasOwnProperty("password")) {
+    hashedPassword = bcrypt.hashSync(data.password, 10);
+  }
+  const newUser = await sql`update users set username = ${
+    data.userName ? data.userName : rows[0].username
+  }, email = ${data.email ? data.email : rows[0].email}, password = ${
+    hashedPassword ? hashedPassword : rows[0].password
+  } where userid = ${user.id} returning*`;
+
+  return NextResponse.json({ ok: true, data: newUser.rows[0] });
 };
