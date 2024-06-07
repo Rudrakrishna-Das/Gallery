@@ -1,11 +1,7 @@
 const jwt = require("jsonwebtoken");
 const validateUser = (token) => {
-  try {
-    const user = jwt.verify(token, process.env.SECRET_KEY);
-    return user;
-  } catch (err) {
-    return null;
-  }
+  const user = jwt.verify(token, process.env.SECRET_KEY);
+  return user ? user : null;
 };
 
 const createUserId = () => {
@@ -17,4 +13,4 @@ const createImageId = () => {
   return id;
 };
 
-module.exports = { validateUser, createUserId };
+module.exports = { validateUser, createUserId, createImageId };

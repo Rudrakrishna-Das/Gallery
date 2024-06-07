@@ -50,8 +50,10 @@ const SignUp = () => {
     }
   };
   return (
-    <section className="bg-white-1 w-full md:max-w-[60%] mx-auto flex flex-col gap-4 mt-28 p-5 text-white-2 rounded-lg">
-      <h1 className="text-lg md:text-2xl text-center font-semibold">Sign Up</h1>
+    <section className="bg-white-1 backdrop-blur-[4px] w-full md:max-w-[60%] mx-auto flex flex-col gap-4 mt-28 p-5 text-white-2 rounded-lg">
+      <h1 className="text-lg md:text-2xl text-center font-extrabold text-black">
+        Sign Up
+      </h1>
       <form
         onSubmit={formSubmitHandler}
         className="flex flex-col px-1 gap-3 w-full mx-auto"
@@ -86,7 +88,7 @@ const SignUp = () => {
           {error}
         </p>
       )}
-      <h3>
+      <h3 className="text-blue-800 font-extrabold">
         Have an account{" "}
         <Link
           className="text-black text-base md:text-xl font-extrabold hover:underline"

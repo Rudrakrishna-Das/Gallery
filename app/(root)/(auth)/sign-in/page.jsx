@@ -47,8 +47,10 @@ const SignIn = () => {
     router.push("/profile");
   };
   return (
-    <section className="bg-white-1 w-full md:max-w-[50%] mx-auto flex flex-col gap-4 mt-28 p-5 text-white-2 rounded-lg">
-      <h1 className="text-lg md:text-2xl text-center font-semibold">Sign In</h1>
+    <section className="bg-white-1 backdrop-blur-[4px] w-full md:max-w-[50%] mx-auto flex flex-col gap-4 mt-28 p-5 text-white-2 rounded-lg">
+      <h1 className="text-lg md:text-2xl text-black text-center font-extrabold">
+        Sign In
+      </h1>
       <form
         onSubmit={formSubmitHandler}
         className="flex flex-col px-4 gap-3 w-full mx-auto"
@@ -78,7 +80,7 @@ const SignIn = () => {
           </p>
         )}
       </form>
-      <h3>
+      <h3 className="text-blue-800 font-extrabold">
         Don&apos;t have an account{" "}
         <Link
           className="text-black text-base md:text-xl font-extrabold hover:underline"

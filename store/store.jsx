@@ -1,5 +1,5 @@
 "use client";
-import { createContext, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext({
   user: null,
@@ -9,6 +9,9 @@ export const UserContext = createContext({
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  useEffect(() => {
+    const existingUser = localStorage.getItem("user");
+  }, []);
   const handleAddUser = (user) => {
     const exist = localStorage.getItem("user");
     if (exist) {

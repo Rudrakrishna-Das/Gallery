@@ -80,8 +80,8 @@ const Profile = () => {
   };
 
   return (
-    <section className="text-white  flex flex-col gap-6 w-[70%] mx-auto text-center">
-      <h1>
+    <section className="text-white  flex flex-col gap-6 w-full sm:w-[70%] sm:mx-auto text-center bg-white-1 backdrop-blur-[4px] p-4 sm:p-10 rounded-lg">
+      <h1 className="font-extrabold text-2xl text-black">
         {user?.username.slice(0, 1).toUpperCase() +
           user?.username.slice(1).toLowerCase()}
         &apos;s Profile
@@ -138,7 +138,12 @@ const Profile = () => {
             user?.username.slice(1).toLowerCase()}
           &apos;s Images
         </button>
-        <button className="bg-green-900 py-2 rounded-lg font-bold hover:opacity-85">
+        <button
+          onClick={() => {
+            router.push("/upload-image");
+          }}
+          className="bg-green-900 py-2 rounded-lg font-bold hover:opacity-85"
+        >
           Upload your Image
         </button>
       </div>
