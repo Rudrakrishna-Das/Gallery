@@ -1,7 +1,6 @@
 "use client";
 import { UserContext } from "@/store/store";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
 import { useContext } from "react";
 
 const Sidebar = () => {
@@ -12,7 +11,7 @@ const Sidebar = () => {
         <Link href="/">Home</Link>
         <Link href="/about">About</Link>
         <Link href={`${user ? "/profile" : "/sign-in"}`}>
-          {user ? user.username : SignIn}
+          {user ? user.username : "SignIn"}
         </Link>
       </ul>
     </aside>
