@@ -1,6 +1,5 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import Link from "next/link";
 import { faXmark } from "@fortawesome/free-solid-svg-icons";
 import { useContext } from "react";
 import { UserContext } from "@/store/store";
@@ -28,22 +27,20 @@ const ShowImage = ({ id, name, url, protect }) => {
     }
   };
   return (
-    <>
-      <Link href={`/test/${id}`}>
-        <li className="w-80 h-48 overflow-hidden border-[15px] border-white rounded-lg list-none">
-          <div className="w-80 h-48 relative bg-white">
-            <Image
-              src={url}
-              alt={name}
-              fill
-              className=" hover:scale-110 duration-500 cursor-pointer"
-            />
-          </div>
-        </li>
-      </Link>
+    <li className="mx-auto ">
+      <div className="w-[24rem] max-sm:w-[12rem] max-sm:h-[12rem] h-56 overflow-hidden border-[15px] border-white rounded-lg list-none">
+        <div className="w-[24rem] max-sm:w-[12rem] max-sm:h-[12rem] h-56 relative bg-white">
+          <Image
+            src={url}
+            alt={name}
+            fill
+            className=" hover:scale-110 duration-500 cursor-pointer"
+          />
+        </div>
+      </div>
       {protect && (
         <button
-          className="relative top-4 right-14 bg-black h-0"
+          className="relative top-[-13rem] max-sm:top-[-11rem] max-sm:left-[9rem] left-[21rem] bg-black h-0"
           onClick={() => deleteImageHandler(id)}
         >
           <FontAwesomeIcon
@@ -53,7 +50,7 @@ const ShowImage = ({ id, name, url, protect }) => {
           />
         </button>
       )}
-    </>
+    </li>
   );
 };
 

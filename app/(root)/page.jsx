@@ -1,4 +1,5 @@
 "use client";
+import { unstable_noStore as noStore } from "next/cache";
 
 import ImageDisplay from "@/components/ImageDisplay";
 import Loading from "@/components/Loading";
@@ -6,6 +7,7 @@ import { UserContext } from "@/store/store";
 import { useContext, useEffect, useState } from "react";
 
 const Home = () => {
+  noStore();
   const [imagesData, setImagesData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [err, setErr] = useState(false);
@@ -30,8 +32,9 @@ const Home = () => {
 
   return (
     <>
-      {loading && imagesData.length === 0 && !err ? <Loading /> : null}
-      {!loading && imagesData.length > 0 && (
+      {loading && imagesData.length === 0 && !err ? (
+        <Loading />
+      ) : !loading && imagesData.length > 0 ? (
         <ul>
           {imagesData.map(
             (imageDetails, index) =>
@@ -45,8 +48,11 @@ const Home = () => {
               )
           )}
         </ul>
+      ) : !loading && err ? (
+        <div>Error: {err.message}</div>
+      ) : (
+        <h1>No Images to show</h1>
       )}
-      {!loading && err && <div>Error: {err.message}</div>}
     </>
   );
 };

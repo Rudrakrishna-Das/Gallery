@@ -1,8 +1,10 @@
 const { formatImageData } = require("@/helper/helper");
 const { sql } = require("@vercel/postgres");
 const { NextResponse } = require("next/server");
+const { unstable_noStore } = require("next/cache");
 
 export const GET = async (req, res) => {
+  unstable_noStore();
   try {
     const { rows } = await sql`SELECT * FROM images`;
     const allImageData = formatImageData(rows);

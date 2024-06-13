@@ -14,9 +14,9 @@ const UserProvider = ({ children }) => {
   const [imageData, setImageData] = useState([]);
   useEffect(() => {
     const existingUser = localStorage.getItem("user");
-    if (existingUser) {
-      setUser(JSON.parse(existingUser));
-    }
+    // if (existingUser) {
+    //   setUser(JSON.parse(existingUser));
+    // }
   }, []);
   const handleAddUser = (user) => {
     const exist = localStorage.getItem("user");
