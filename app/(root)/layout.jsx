@@ -25,7 +25,10 @@ const RootLayout = ({ children }) => {
     <main>
       <Navigation openSidebar={sidebarOpenHandler} />
       {openSidebar && <Sidebar />}
-      <section onClick={sidebarCloseHandler} className="w-full px-6 pt-24">
+      <section
+        onClick={sidebarCloseHandler}
+        className="w-full px-6 pt-24 pb-14"
+      >
         {children}
       </section>
     </main>
