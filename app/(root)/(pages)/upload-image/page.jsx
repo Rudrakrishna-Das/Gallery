@@ -78,7 +78,13 @@ const UploadImage = () => {
     }
     if (formData.genere.trim().length < 3) {
       setError(true);
-      setMessage("Please write correct genere");
+      setMessage("Genere Must be 3 characters long");
+      setFormSubmitting(false);
+      return;
+    }
+    if (formData.name.trim().length < 3) {
+      setError(true);
+      setMessage("Name Must be 3 characters long");
       setFormSubmitting(false);
       return;
     }
@@ -94,7 +100,10 @@ const UploadImage = () => {
       if (!data.ok) {
         throw new Error(data.message);
       }
-      router.push(`${user.username.toLowerCase()}/all-images`);
+      setMessage("Image successfully added");
+      setFormData({});
+      setFormSubmitting(false);
+      setFilePercentage(0);
     } catch (error) {
       setError(true);
       setMessage(error.message);
@@ -146,10 +155,21 @@ const UploadImage = () => {
         </button>
 
         <input
-          className="py-1 px-2 rounded-lg"
+          className="py-1 px-2 rounded-lg disabled:cursor-not-allowed disabled:bg-slate-500"
+          type="text"
+          placeholder="Image Name"
+          name="name"
+          disabled={imageLoading}
+          value={formData.name || ""}
+          onChange={formChangeHandler}
+        />
+        <input
+          className="py-1 px-2 rounded-lg disabled:cursor-not-allowed disabled:bg-slate-500"
           type="text"
           placeholder="Genere"
           name="genere"
+          disabled={imageLoading}
+          value={formData.genere || ""}
           onChange={formChangeHandler}
         />
         {error && message ? (
@@ -164,6 +184,15 @@ const UploadImage = () => {
           className="bg-green-500 py-2 rounded-lg w-[70%] mx-auto hover:bg-green-800 text-sm sm:text-xl font-extrabold disabled:bg-slate-600 disabled:text-white disabled:cursor-not-allowed"
         >
           {formSubmitting ? <Loading /> : "Submit"}
+        </button>
+        <button
+          type="button"
+          onClick={() => router.push(`/${user?.username}/all-images`)}
+          className="bg-green-500 py-2 rounded-lg w-[70%] mx-auto hover:bg-green-800 text-sm sm:text-xl font-extrabold disabled:bg-slate-600 disabled:text-white disabled:cursor-not-allowed"
+        >
+          {user?.username.slice(0, 1).toUpperCase() +
+            user?.username.slice(1).toLowerCase()}
+          &apos;s Images
         </button>
       </form>
     </section>

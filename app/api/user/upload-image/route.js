@@ -24,10 +24,16 @@ export const POST = async (req, res) => {
   if (data.genere.trim().length < 3) {
     return NextResponse.json({
       ok: false,
-      message: "Please write correct genere",
+      message: "Genere Must be 3 characters long",
+    });
+  }
+  if (data.name.trim().length < 3) {
+    return NextResponse.json({
+      ok: false,
+      message: "Name Must be 3 characters long",
     });
   }
   const imageId = createImageId();
-  await sql`insert into images values(${user.id},${imageId},${data.genere},${data.image})`;
+  await sql`insert into images values(${user.id},${imageId},${data.name},${data.genere},${data.image})`;
   return NextResponse.json({ ok: true });
 };

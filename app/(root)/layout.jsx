@@ -19,7 +19,6 @@ const RootLayout = ({ children }) => {
     const userLoggedIn = localStorage.getItem("user");
     if (userLoggedIn) {
       addUser(JSON.parse(userLoggedIn));
-      router.push("/profile");
     }
   }, []);
   return (

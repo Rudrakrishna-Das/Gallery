@@ -133,7 +133,10 @@ const Profile = () => {
         </button>
       </form>
       <div className="flex flex-col gap-2">
-        <button className="bg-green-900 py-2 rounded-lg font-bold hover:opacity-85">
+        <button
+          onClick={() => router.push(`/${user?.username}/all-images`)}
+          className="bg-green-900 py-2 rounded-lg font-bold hover:opacity-85"
+        >
           {user?.username.slice(0, 1).toUpperCase() +
             user?.username.slice(1).toLowerCase()}
           &apos;s Images

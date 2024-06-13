@@ -3,14 +3,20 @@ import { createContext, useEffect, useState } from "react";
 
 export const UserContext = createContext({
   user: null,
+  imageData: null,
+  addImages: () => {},
   addUser: () => {},
   removeUser: () => {},
 });
 
 const UserProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [imageData, setImageData] = useState([]);
   useEffect(() => {
     const existingUser = localStorage.getItem("user");
+    if (existingUser) {
+      setUser(JSON.parse(existingUser));
+    }
   }, []);
   const handleAddUser = (user) => {
     const exist = localStorage.getItem("user");
@@ -27,8 +33,14 @@ const UserProvider = ({ children }) => {
     }
     setUser(null);
   };
+  const addImages = (imageData) => {
+    setImageData(imageData);
+  };
+
   const ctxValue = {
     user,
+    imageData,
+    addImages,
     addUser: handleAddUser,
     removeUser: handleRemoveUser,
   };
