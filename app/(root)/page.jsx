@@ -49,9 +49,13 @@ const Home = () => {
           )}
         </ul>
       ) : !loading && err ? (
-        <div>Error: {err.message}</div>
+        <p className="text-center  text-3xl font-extrabold">
+          Error: {err.message}
+        </p>
       ) : (
-        <h1>No Images to show</h1>
+        <h1 className="text-center  text-3xl font-extrabold">
+          No Images to show
+        </h1>
       )}
     </>
   );

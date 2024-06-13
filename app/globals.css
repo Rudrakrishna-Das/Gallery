@@ -16,6 +16,10 @@ body {
   border-radius: 100%;
   animation: 0.5s infinite ease-in-out circle;
 }
+dialog::backdrop {
+  background-color: rgb(0, 0, 0, 0.6);
+  backdrop-filter: blur(6px);
+}
 
 @keyframes circle {
   from {

@@ -33,7 +33,11 @@ const PersonalImages = () => {
   }
 
   if (err) {
-    return <p>Error: {err.message}</p>;
+    return (
+      <p className="text-center  text-3xl font-extrabold">
+        Error: {err.message}
+      </p>
+    );
   }
 
   if (!loading && imageData.length > 0) {
@@ -54,7 +58,11 @@ const PersonalImages = () => {
     );
   }
 
-  return <h1>Please Upload to see Image</h1>;
+  return (
+    <h1 className="text-center  text-3xl font-extrabold">
+      Please Upload to see Image
+    </h1>
+  );
 };
 
 export default PersonalImages;
