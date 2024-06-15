@@ -11,6 +11,7 @@ import Image from "next/image";
 import Loading from "@/components/Loading";
 import { useRouter } from "next/navigation";
 import { UserContext } from "@/store/store";
+import ImageGenere from "@/components/ImageGenere";
 
 const UploadImage = () => {
   const imageRef = useRef();
@@ -70,9 +71,11 @@ const UploadImage = () => {
     e.preventDefault();
     setFormSubmitting(true);
     const keys = Object.keys(formData);
-    if (keys.length < 2) {
+    if (keys.length < 3) {
       setError(true);
-      setMessage("Please upload a image and write your image genere first");
+      setMessage(
+        "Please upload a image and write your image name, and select genere first"
+      );
       setFormSubmitting(false);
       return;
     }
@@ -102,6 +105,7 @@ const UploadImage = () => {
       }
       setMessage("Image successfully added");
       setFormData({});
+      setFile("");
       setFormSubmitting(false);
       setFilePercentage(0);
     } catch (error) {
@@ -110,6 +114,12 @@ const UploadImage = () => {
       setFormSubmitting(false);
     }
   };
+  const handleCategoryChange = (e) => {
+    setError(false);
+    setMessage("");
+    setFormData({ ...formData, genere: e.target.value });
+  };
+  console.log(formData);
 
   return (
     <section className="bg-white-1 p-5  backdrop-blur-[10px] w-full sm:w-[70%] mx-auto my-4 rounded-lg">
@@ -163,15 +173,8 @@ const UploadImage = () => {
           value={formData.name || ""}
           onChange={formChangeHandler}
         />
-        <input
-          className="py-1 px-2 rounded-lg disabled:cursor-not-allowed disabled:bg-slate-500"
-          type="text"
-          placeholder="Genere"
-          name="genere"
-          disabled={imageLoading}
-          value={formData.genere || ""}
-          onChange={formChangeHandler}
-        />
+
+        <ImageGenere onChange={handleCategoryChange} />
         {error && message ? (
           <p className="text-red-800 font-bold">{message}</p>
         ) : !error && message ? (
