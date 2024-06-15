@@ -69,7 +69,7 @@ const Home = () => {
               imageDetails[1].length > 0 && (
                 <ImageDisplay
                   key={index}
-                  protect={true}
+                  protect={false}
                   genere={imageDetails[0][0]}
                   allImages={imageDetails[1]}
                 />
