@@ -1,5 +1,6 @@
 "use client";
 import Loading from "@/components/Loading";
+import OAuth from "@/components/OAuth";
 import { UserContext } from "@/store/store";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -74,6 +75,7 @@ const SignIn = () => {
         <button className="bg-black py-2 rounded-lg hover:opacity-85">
           {loading ? <Loading /> : "Sign In"}
         </button>
+        <OAuth />
         {error && (
           <p className="text-red-500 font-extrabold text-xs sm:text-base md:text-xl">
             {error}

@@ -12,6 +12,7 @@ const Profile = () => {
   const [message, setMessage] = useState(false);
   const router = useRouter();
   const { user, addUser, removeUser } = useContext(UserContext);
+
   useLayoutEffect(() => {
     const userSignedIn = localStorage.getItem("user");
     if (!userSignedIn) {
@@ -75,8 +76,8 @@ const Profile = () => {
   const handleSignout = async () => {
     const res = await fetch("/api/auth/sign-out");
     const data = await res.json();
-    removeUser();
     router.push("/sign-in");
+    removeUser();
   };
 
   return (

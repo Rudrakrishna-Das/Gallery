@@ -119,7 +119,6 @@ const UploadImage = () => {
     setMessage("");
     setFormData({ ...formData, genere: e.target.value });
   };
-  console.log(formData);
 
   return (
     <section className="bg-white-1 p-5  backdrop-blur-[10px] w-full sm:w-[70%] mx-auto my-4 rounded-lg">

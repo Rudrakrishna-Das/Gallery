@@ -38,5 +38,16 @@ const formatImageData = (rows) => {
   }
   return allImagesData;
 };
+const createPassword = () => {
+  const pass =
+    Math.random().toString(36).slice(-8) + Math.random().toString(36).slice(-8);
+  return pass;
+};
 
-module.exports = { validateUser, createUserId, createImageId, formatImageData };
+module.exports = {
+  validateUser,
+  createUserId,
+  createImageId,
+  formatImageData,
+  createPassword,
+};

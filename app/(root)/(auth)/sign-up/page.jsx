@@ -1,5 +1,6 @@
 "use client";
 import Loading from "@/components/Loading";
+import OAuth from "@/components/OAuth";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
@@ -82,6 +83,7 @@ const SignUp = () => {
         <button className="bg-black py-2 rounded-lg hover:opacity-85">
           {loading ? <Loading /> : "Sign Up"}
         </button>
+        <OAuth />
       </form>
       {error && (
         <p className="text-red-500 font-extrabold text-xs sm:text-base md:text-xl">
