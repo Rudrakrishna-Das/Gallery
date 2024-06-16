@@ -2,6 +2,8 @@
 import Loading from "@/components/Loading";
 import OAuth from "@/components/OAuth";
 import { UserContext } from "@/store/store";
+import { faEye, faEyeSlash } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState, useContext } from "react";
@@ -9,6 +11,7 @@ import { useState, useContext } from "react";
 const SignIn = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -48,7 +51,7 @@ const SignIn = () => {
     router.push("/profile");
   };
   return (
-    <section className="bg-white-1 backdrop-blur-[4px] w-full md:max-w-[50%] mx-auto flex flex-col gap-4 mt-28 p-5 text-white-2 rounded-lg">
+    <section className="bg-white-1 backdrop-blur-[4px] w-full md:max-w-[50%] mx-auto flex flex-col gap-4 mt-20 p-5 text-white-2 rounded-lg">
       <h1 className="text-lg md:text-2xl text-black text-center font-extrabold">
         Sign In
       </h1>
@@ -66,12 +69,30 @@ const SignIn = () => {
         />
         <input
           onChange={formChangeHandler}
-          type="text"
+          type={showPassword ? "text" : "password"}
           placeholder="Password"
           className="p-1 rounded-md text-black"
           name="password"
           value={formData.password}
         />
+        <button
+          type="button"
+          onClick={() => setShowPassword((prevState) => !prevState)}
+          className="text-black self-end  cursor-pointer"
+        >
+          {showPassword ? (
+            <FontAwesomeIcon
+              icon={faEye}
+              className="relative -top-10 right-[1.25rem]"
+            />
+          ) : (
+            <FontAwesomeIcon
+              icon={faEyeSlash}
+              className="relative -top-10 right-[1.15rem]"
+            />
+          )}
+        </button>
+
         <button className="bg-black py-2 rounded-lg hover:opacity-85">
           {loading ? <Loading /> : "Sign In"}
         </button>
